@@ -220,7 +220,7 @@
     color: var(--ink);
   }
   .nav-logo .logo-img {
-    height: 32px;
+    height: 26px;
     width: auto;
     display: block;
   }
@@ -243,7 +243,7 @@
     display: inline-flex; align-items: center; justify-content: center;
     gap: 10px;
     padding: 14px 26px;
-    border-radius: 100px;
+    border-radius: 10px;
     font-family: var(--font);
     font-weight: 600;
     font-size: 0.98rem;
@@ -1009,7 +1009,7 @@
   @media (max-width: 640px) {
     body { padding-bottom: 72px; }
     .section { padding: 64px 0; }
-    .nav-logo .logo-img { height: 26px; }
+    .nav-logo .logo-img { height: 21px; }
     .nav-logo .sub { display: none; }
     .program-grid { grid-template-columns: 1fr; }
     .roi-calc { padding: 24px; }
@@ -1044,6 +1044,35 @@
     .mobile-bar a svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; }
     .mobile-bar a.primary { background: var(--ink); color: #fff; }
   }
+
+  /* ---------- Reveal-Animationen ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+    .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+    .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.15s; }
+    .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.25s; }
+    .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.35s; }
+    .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.45s; }
+    .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.55s; }
+  }
+  [data-count] { display: inline-block; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -1071,7 +1100,7 @@
 <header class="hero">
   <div class="container">
     <div class="hero-grid">
-      <div>
+      <div class="reveal">
         <span class="eyebrow">Partner-Programm seit 2004</span>
         <h1>Erweitern Sie Ihr Angebot um <em>IHHT</em>. Amortisation in 9 bis 14 Monaten.</h1>
         <p class="sub">
@@ -1079,7 +1108,7 @@
           Kauf, Leasing oder Miete. Herstellerunabhängig.
         </p>
 
-        <ul class="hero-bullets">
+        <ul class="hero-bullets reveal-stagger">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             <span><strong>Herstellerunabhängige</strong> Geräte-Empfehlung — passt zu Ihrem Raum &amp; Budget</span>
@@ -1094,13 +1123,13 @@
           </li>
         </ul>
 
-        <div class="hero-trust">
+        <div class="hero-trust reveal-stagger">
           <div class="item">
-            <strong>400+</strong>
+            <strong><span data-count="400" data-suffix="+">0</span></strong>
             <span class="label">Partner<br>im DACH-Raum</span>
           </div>
           <div class="item">
-            <strong>20</strong>
+            <strong><span data-count="20">0</span></strong>
             <span class="label">Jahre<br>Erfahrung</span>
           </div>
           <div class="item">
@@ -1111,7 +1140,7 @@
       </div>
 
       <!-- Conversion-Form -->
-      <form class="hero-form" id="hero-form">
+      <form class="hero-form reveal" id="hero-form">
         <span class="form-eyebrow">Kostenlose Erstberatung</span>
         <h3>Beratung anfragen — Rückruf binnen 24h</h3>
         <p class="form-sub">45 Minuten, persönlich von M. Marx. Keine Verpflichtung.</p>
@@ -1181,21 +1210,21 @@
 <section class="trust-strip">
   <div class="container">
     <div class="label">Worauf Partner aus DACH bei DG-ES vertrauen</div>
-    <div class="trust-row">
+    <div class="trust-row reveal-stagger">
       <div class="stat">
-        <div class="num">400+</div>
+        <div class="num"><span data-count="400" data-suffix="+">0</span></div>
         <div class="desc">Partner im DACH-Raum</div>
       </div>
       <div class="stat">
-        <div class="num">20 Jahre</div>
+        <div class="num"><span data-count="20">0</span> Jahre</div>
         <div class="desc">IHHT-Expertise</div>
       </div>
       <div class="stat">
-        <div class="num">100 %</div>
+        <div class="num"><span data-count="100" data-suffix=" %">0</span></div>
         <div class="desc">Herstellerunabhängig</div>
       </div>
       <div class="stat">
-        <div class="num">9 Mon.</div>
+        <div class="num"><span data-count="9">0</span> Mon.</div>
         <div class="desc">Median Amortisation</div>
       </div>
     </div>
@@ -1205,7 +1234,7 @@
 <!-- ====== FÜR WEN ====== -->
 <section class="section section-paper">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Für wen</span>
       <h2>Drei Wege, mit IHHT Zusatzumsatz zu generieren</h2>
       <p class="lede lede-muted">
@@ -1214,7 +1243,7 @@
       </p>
     </div>
 
-    <div class="for-whom-grid">
+    <div class="for-whom-grid reveal-stagger">
       <div class="fw-card">
         <div class="fw-image">
           <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&q=80&auto=format&fit=crop" alt="Praxis-Behandlungsraum" loading="lazy">
@@ -1269,7 +1298,7 @@
 <!-- ====== ROI ====== -->
 <section class="section section-white" id="roi">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Wirtschaftlichkeit</span>
       <h2>Rechnen Sie selbst. Transparente Zahlen statt Verkaufsversprechen.</h2>
       <p class="lede lede-muted">
@@ -1339,13 +1368,13 @@
 <!-- ====== PROGRAMM ====== -->
 <section class="section section-paper">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Das Programm</span>
       <h2>Sechs Bausteine vom ersten Gespräch bis zum laufenden Betrieb</h2>
       <p class="lede lede-muted">Sie bekommen ein komplettes Setup, nicht nur ein Gerät.</p>
     </div>
 
-    <div class="program-grid">
+    <div class="program-grid reveal-stagger">
       <div class="program-card">
         <div class="program-num">01</div>
         <h3>Herstellerunabhängige Beratung</h3>
@@ -1389,13 +1418,13 @@
 <!-- ====== TESTIMONIALS ====== -->
 <section class="section section-white">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Partner-Stimmen</span>
       <h2>So läuft IHHT bei anderen Partnern</h2>
       <p class="lede lede-muted">Drei Beispiele aus unterschiedlichen Segmenten mit konkreten Zahlen.</p>
     </div>
 
-    <div class="testimonial-grid">
+    <div class="testimonial-grid reveal-stagger">
       <div class="testimonial">
         <div class="stat-badge">+ 340 € / Kunde / Jahr</div>
         <p class="quote">„Ich hatte Skepsis, ob IHHT bei meiner Klientel ankommt.
@@ -1450,7 +1479,7 @@
 <!-- ====== GERÄTE ====== -->
 <section class="section section-paper">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Geräte-Portfolio</span>
       <h2>Sechs Modelle für unterschiedliche Anwendungen</h2>
       <p class="lede lede-muted">Datenblätter erhalten Sie nach einem kurzen Erstgespräch.</p>
@@ -1530,7 +1559,7 @@
 <!-- ====== ABLAUF ====== -->
 <section class="section section-cream">
   <div class="container">
-    <div class="section-head center">
+    <div class="section-head center reveal">
       <span class="eyebrow">Der Ablauf</span>
       <h2>In fünf Schritten zum laufenden IHHT-Betrieb</h2>
       <p class="lede lede-muted" style="margin-left:auto; margin-right:auto;">
@@ -1538,7 +1567,7 @@
       </p>
     </div>
 
-    <div class="steps">
+    <div class="steps reveal-stagger">
       <div class="step"><div class="step-num">1</div><h4>Erstberatung</h4><p>Online-Call, 45 Min. Bedarfsanalyse, Geräte-Empfehlung.</p></div>
       <div class="step"><div class="step-num">2</div><h4>Angebot</h4><p>Individuelles Angebot inkl. Finanzierung, 3 bis 5 Tage.</p></div>
       <div class="step"><div class="step-num">3</div><h4>Schulung</h4><p>2-Tage-Zertifizierung vor Ort oder inhouse.</p></div>
@@ -1551,7 +1580,7 @@
 <!-- ====== FAQ ====== -->
 <section class="section section-paper">
   <div class="container">
-    <div class="section-head center">
+    <div class="section-head center reveal">
       <span class="eyebrow">Häufige Fragen</span>
       <h2>Die Antworten, die zukünftige Partner am häufigsten brauchen</h2>
     </div>
@@ -1733,6 +1762,67 @@
   }
   [price, sessions, rate].forEach(el => el.addEventListener('input', updateCalc));
   updateCalc();
+</script>
+
+<!-- ====== REVEAL + COUNTUP ANIMATIONS ====== -->
+<script>
+(function () {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => el.classList.add('is-visible'));
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count, 10);
+      el.textContent = target + (el.dataset.suffix || '');
+    });
+    return;
+  }
+
+  // CountUp Easing-Funktion
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateCount(el) {
+    if (el.dataset.counted === '1') return;
+    el.dataset.counted = '1';
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const startTime = performance.now();
+
+    function tick(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const value = Math.round(target * easeOutCubic(progress));
+      el.textContent = value + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // IntersectionObserver für Reveal + CountUp
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.classList.add('is-visible');
+      // CountUp-Kinder triggern
+      el.querySelectorAll('[data-count]').forEach(animateCount);
+      // Auch direkt das Element selbst, falls es data-count hat
+      if (el.dataset.count) animateCount(el);
+      observer.unobserve(el);
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -60px 0px'
+  });
+
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
+
+  // Hero-Trust ohne reveal-Wrapper: CountUps direkt observen
+  document.querySelectorAll('[data-count]').forEach(function (el) {
+    // Falls noch kein observer auf einem Parent läuft, beobachte das Element direkt
+    if (!el.closest('.reveal, .reveal-stagger')) observer.observe(el);
+  });
+})();
 </script>
 
 </body>
