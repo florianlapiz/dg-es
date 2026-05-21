@@ -140,9 +140,11 @@
     --radius-lg: 24px;
     --radius-xl: 36px;
 
-    --shadow-soft: 0 1px 2px rgba(15,37,65,0.04), 0 6px 20px rgba(15,37,65,0.06);
-    --shadow-card: 0 1px 2px rgba(15,37,65,0.05), 0 14px 40px rgba(15,37,65,0.09);
+    --shadow-soft: 0 1px 2px rgba(15,37,65,0.03), 0 6px 20px rgba(15,37,65,0.04);
+    --shadow-card: 0 1px 2px rgba(15,37,65,0.04), 0 14px 40px rgba(15,37,65,0.07);
     --shadow-btn: 0 6px 20px rgba(76,144,201,0.32);
+    --shadow-nav: 0 4px 24px rgba(15,37,65,0.07);
+    --hairline: 1px solid rgba(76,144,201,0.22);
 
     --container: 1200px;
     --gutter: 32px;
@@ -207,6 +209,11 @@
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line-soft);
+    transition: box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .nav.is-scrolled {
+    background: rgba(246,247,250,0.96);
+    box-shadow: var(--shadow-nav);
   }
   .nav-inner {
     display: flex; align-items: center; justify-content: space-between;
@@ -352,6 +359,7 @@
   /* Hero Form Card — Conversion-Centerpiece */
   .hero-form {
     background: var(--white);
+    border: var(--hairline);
     border-radius: var(--radius-lg);
     padding: 36px;
     box-shadow: var(--shadow-card);
@@ -450,6 +458,111 @@
   }
   .hero-form .alt-cta a:hover { color: var(--blue); }
 
+  /* ---------- Multi-Step Form ---------- */
+  .form-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .form-progress .progress-bar {
+    flex-grow: 1;
+    height: 4px;
+    background: var(--paper-2);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .form-progress .progress-fill {
+    position: absolute;
+    inset: 0;
+    width: 50%;
+    background: var(--blue);
+    border-radius: 4px;
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hero-form[data-step="2"] .form-progress .progress-fill { width: 100%; }
+  .form-step { display: none; animation: stepIn 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+  .hero-form[data-step="1"] .form-step[data-step="1"] { display: block; }
+  .hero-form[data-step="2"] .form-step[data-step="2"] { display: block; }
+  @keyframes stepIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .segment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .segment-btn {
+    background: var(--paper);
+    border: 1px solid rgba(76,144,201,0.22);
+    border-radius: 10px;
+    padding: 14px 12px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    text-align: left;
+    line-height: 1.3;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s, box-shadow 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .segment-btn .icon-wrap {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: var(--blue-soft);
+    color: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .segment-btn .icon-wrap svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .segment-btn:hover {
+    border-color: var(--blue);
+    background: var(--white);
+    box-shadow: 0 4px 12px rgba(76,144,201,0.12);
+  }
+  .segment-btn:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+  }
+  .form-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 0.86rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  .form-back:hover { color: var(--ink); }
+  .form-back svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .step-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: var(--blue-soft);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--blue-deep);
+    margin-bottom: 14px;
+  }
+
   /* ---------- Trust Strip ---------- */
   .trust-strip {
     padding: 56px 0;
@@ -490,6 +603,7 @@
   }
   .fw-card {
     background: var(--white);
+    border: var(--hairline);
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-soft);
@@ -549,6 +663,7 @@
   /* ---------- ROI ---------- */
   .roi-table-wrap {
     background: var(--white);
+    border: var(--hairline);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-soft);
     overflow: hidden;
@@ -591,6 +706,7 @@
   /* ---------- ROI Calculator ---------- */
   .roi-calc {
     background: var(--white);
+    border: var(--hairline);
     border-radius: var(--radius-lg);
     padding: 56px;
     margin-top: 32px;
@@ -670,10 +786,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
-    background: var(--line-soft);
+    background: rgba(76,144,201,0.18);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    border: 1px solid var(--line-soft);
+    border: var(--hairline);
   }
   .program-card {
     background: var(--white);
@@ -699,6 +815,7 @@
   }
   .testimonial {
     background: var(--white);
+    border: var(--hairline);
     padding: 36px 32px;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-soft);
@@ -754,6 +871,7 @@
   }
   .device-card {
     background: var(--white);
+    border: var(--hairline);
     border-radius: var(--radius-lg);
     overflow: hidden;
     scroll-snap-align: start;
@@ -821,6 +939,7 @@
   .faq-wrap { max-width: 820px; margin: 0 auto; }
   .faq-item {
     background: var(--white);
+    border: var(--hairline);
     border-radius: var(--radius);
     margin-bottom: 12px;
     box-shadow: var(--shadow-soft);
@@ -897,6 +1016,7 @@
 
   .final-form {
     background: var(--white);
+    border: var(--hairline);
     color: var(--ink-soft);
     padding: 44px;
     border-radius: var(--radius-lg);
@@ -1139,67 +1259,109 @@
         </div>
       </div>
 
-      <!-- Conversion-Form -->
-      <form class="hero-form reveal" id="hero-form">
+      <!-- Conversion-Form Multi-Step -->
+      <form class="hero-form reveal" id="hero-form" data-step="1">
         <span class="form-eyebrow">Kostenlose Erstberatung</span>
-        <h3>Beratung anfragen — Rückruf binnen 24h</h3>
-        <p class="form-sub">45 Minuten, persönlich von M. Marx. Keine Verpflichtung.</p>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="h-name">Name</label>
-            <input type="text" id="h-name" name="name" required autocomplete="name">
+        <!-- Progress -->
+        <div class="form-progress">
+          <span class="step-label">Schritt <span id="step-current">1</span> / 2</span>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+
+        <!-- Step 1: Einsatzzweck (low-friction Engagement-Hook) -->
+        <div class="form-step" data-step="1">
+          <h3>Wo möchten Sie IHHT einsetzen?</h3>
+          <p class="form-sub">Ein Klick. Danach noch drei Felder, fertig.</p>
+
+          <div class="segment-options">
+            <button type="button" class="segment-btn" data-value="Ärztliche Praxis / Heilpraktiker / Physio">
+              <span class="icon-wrap">
+                <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5"/><path d="M9 14h3l1.5-3 2 6 1.5-3h3"/></svg>
+              </span>
+              Praxis · Arzt · HP · Physio
+            </button>
+            <button type="button" class="segment-btn" data-value="Fitness-Studio">
+              <span class="icon-wrap">
+                <svg viewBox="0 0 24 24"><path d="M6.5 6.5h11"/><path d="M6.5 17.5h11"/><path d="M2 7v10"/><path d="M22 7v10"/></svg>
+              </span>
+              Fitness-Studio
+            </button>
+            <button type="button" class="segment-btn" data-value="Wellness-Hotel / Spa">
+              <span class="icon-wrap">
+                <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/></svg>
+              </span>
+              Wellness-Hotel · Spa
+            </button>
+            <button type="button" class="segment-btn" data-value="Trainer / Coach / Sonstiges">
+              <span class="icon-wrap">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              </span>
+              Trainer · Coach · Sonstiges
+            </button>
+          </div>
+
+          <div class="alt-cta">
+            Lieber direkt anrufen?
+            <a href="tel:+4980632071611">08063 207 16 11</a>
+          </div>
+        </div>
+
+        <!-- Step 2: Kontakt -->
+        <div class="form-step" data-step="2">
+          <button type="button" class="form-back" id="form-back-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Zurück
+          </button>
+
+          <div class="step-summary" id="segment-display">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span id="segment-label">Praxis</span>
+          </div>
+
+          <h3>Wer dürfen wir zurückrufen?</h3>
+          <p class="form-sub">Rückruf binnen 24h, persönlich von M. Marx.</p>
+
+          <input type="hidden" id="h-segment" name="segment" value="">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="h-name">Name</label>
+              <input type="text" id="h-name" name="name" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="h-phone">Telefon</label>
+              <input type="tel" id="h-phone" name="phone" required autocomplete="tel">
+            </div>
           </div>
           <div class="form-group">
-            <label for="h-phone">Telefon</label>
-            <input type="tel" id="h-phone" name="phone" required autocomplete="tel">
+            <label for="h-email">E-Mail</label>
+            <input type="email" id="h-email" name="email" required autocomplete="email">
           </div>
-        </div>
-        <div class="form-group">
-          <label for="h-email">E-Mail</label>
-          <input type="email" id="h-email" name="email" required autocomplete="email">
-        </div>
-        <div class="form-group">
-          <label for="h-company">Unternehmen / Praxis</label>
-          <input type="text" id="h-company" name="company" required autocomplete="organization">
-        </div>
-        <div class="form-group">
-          <label for="h-segment">Einsatzzweck</label>
-          <select id="h-segment" name="segment" required>
-            <option value="">Bitte wählen</option>
-            <option>Ärztliche Praxis</option>
-            <option>Heilpraktiker</option>
-            <option>Physiotherapie</option>
-            <option>Fitness-Studio</option>
-            <option>Wellness-Hotel / Spa</option>
-            <option>Trainer / Coach</option>
-            <option>Sonstiges</option>
-          </select>
-        </div>
+          <div class="form-group">
+            <label for="h-company">Unternehmen / Praxis</label>
+            <input type="text" id="h-company" name="company" required autocomplete="organization">
+          </div>
 
-        <button type="submit" class="btn btn-primary btn-block btn-lg btn-arrow" style="margin-top: 6px;">
-          Beratungstermin sichern
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
+          <button type="submit" class="btn btn-primary btn-block btn-lg btn-arrow" style="margin-top: 6px;">
+            Beratungstermin sichern
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
 
-        <div class="form-trust">
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            DSGVO-konform
-          </span>
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Rückruf binnen 24h
-          </span>
-          <span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Keine Verpflichtung
-          </span>
-        </div>
-
-        <div class="alt-cta">
-          Lieber direkt anrufen?
-          <a href="tel:+4980632071611">08063 207 16 11</a>
+          <div class="form-trust">
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              DSGVO
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              24h Rückruf
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Unverbindlich
+            </span>
+          </div>
         </div>
       </form>
     </div>
@@ -1762,6 +1924,58 @@
   }
   [price, sessions, rate].forEach(el => el.addEventListener('input', updateCalc));
   updateCalc();
+</script>
+
+<!-- ====== NAV-SHADOW BEIM SCROLLEN ====== -->
+<script>
+(function () {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+  function onScroll() {
+    if (window.scrollY > 10) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+<!-- ====== MULTI-STEP HERO FORM ====== -->
+<script>
+(function () {
+  const form = document.getElementById('hero-form');
+  if (!form) return;
+
+  const stepCurrent = document.getElementById('step-current');
+  const segmentInput = document.getElementById('h-segment');
+  const segmentLabel = document.getElementById('segment-label');
+  const backBtn = document.getElementById('form-back-btn');
+
+  function setStep(n) {
+    form.dataset.step = n;
+    if (stepCurrent) stepCurrent.textContent = n;
+    // Focus erstes Eingabefeld bei Step 2
+    if (n === '2') {
+      setTimeout(() => {
+        const first = form.querySelector('.form-step[data-step="2"] input:not([type=hidden])');
+        if (first) first.focus();
+      }, 350);
+    }
+  }
+
+  // Segment-Buttons → setze Wert + Step 2
+  form.querySelectorAll('.segment-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const val = btn.dataset.value;
+      if (segmentInput) segmentInput.value = val;
+      if (segmentLabel) segmentLabel.textContent = val;
+      setStep('2');
+    });
+  });
+
+  // Zurück-Button → Step 1
+  if (backBtn) backBtn.addEventListener('click', () => setStep('1'));
+})();
 </script>
 
 <!-- ====== REVEAL + COUNTUP ANIMATIONS ====== -->
