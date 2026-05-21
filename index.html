@@ -1723,7 +1723,7 @@
       <!-- 1. Praxis — Image links -->
       <article class="fw-row reveal">
         <div class="fw-img-wrap">
-          <img src="https://images.unsplash.com/photo-1631815589094-c89bdd0c8c6b?w=900&q=80&auto=format&fit=crop" alt="Klient bei IHHT-Sitzung in entspannter Praxis-Umgebung" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&q=80&auto=format&fit=crop" alt="Klient bei IHHT-Sitzung in entspannter Praxis-Umgebung" loading="lazy">
           <div class="fw-img-badge">Praxis · Arzt · HP · Physio</div>
         </div>
         <div class="fw-content">
@@ -1769,7 +1769,7 @@
       <!-- 3. Hotel — Image links -->
       <article class="fw-row reveal">
         <div class="fw-img-wrap">
-          <img src="https://images.unsplash.com/photo-1610501687888-e36abd75c8e6?w=900&q=80&auto=format&fit=crop" alt="Wellness-Hotel Spa-Bereich mit IHHT-Signatur-Behandlung" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&q=80&auto=format&fit=crop" alt="Wellness-Hotel Spa-Bereich mit IHHT-Signatur-Behandlung" loading="lazy">
           <div class="fw-img-badge">Wellness-Hotel · Spa</div>
         </div>
         <div class="fw-content">
@@ -2040,7 +2040,7 @@
       </div>
       <div class="device-card">
         <div class="device-img">
-          <img src="https://images.unsplash.com/photo-1631815589094-c89bdd0c8c6b?w=600&q=80&auto=format&fit=crop" alt="IHHT-Gerät Modell Professional" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80&auto=format&fit=crop" alt="IHHT-Gerät Modell Professional" loading="lazy">
         </div>
         <div class="device-body">
           <h4>Modell Professional</h4>
@@ -2051,7 +2051,7 @@
       </div>
       <div class="device-card">
         <div class="device-img">
-          <img src="https://images.unsplash.com/photo-1583912267550-d6c2ac3196c0?w=600&q=80&auto=format&fit=crop" alt="IHHT-Gerät Modell Premium" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=600&q=80&auto=format&fit=crop" alt="IHHT-Gerät Modell Premium" loading="lazy">
         </div>
         <div class="device-body">
           <h4>Modell Premium</h4>
@@ -2191,45 +2191,92 @@
       </div>
     </div>
 
-    <form class="final-form" id="final-form">
-      <span class="eyebrow">Beratungstermin</span>
-      <h3>Rückruf innerhalb von 24 Stunden</h3>
-      <p class="form-sub">Kostenlos, unverbindlich, keine Verpflichtung.</p>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
+    <form class="final-form hero-form" id="final-form" data-step="1">
+      <span class="form-eyebrow">Beratungstermin</span>
+
+      <div class="form-progress">
+        <span class="step-label">Schritt <span id="final-step-current">1</span> / 2</span>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
       </div>
-      <div class="form-group">
-        <label for="company">Unternehmen / Praxis</label>
-        <input type="text" id="company" name="company" required>
+
+      <!-- Step 1: Einsatzzweck -->
+      <div class="form-step" data-step="1">
+        <h3>Wo möchten Sie IHHT einsetzen?</h3>
+        <p class="form-sub">Ein Klick. Danach noch drei Felder.</p>
+
+        <div class="segment-options">
+          <button type="button" class="segment-btn" data-value="Ärztliche Praxis / Heilpraktiker / Physio">
+            <span class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5"/><path d="M9 14h3l1.5-3 2 6 1.5-3h3"/></svg>
+            </span>
+            Praxis · Arzt · HP · Physio
+          </button>
+          <button type="button" class="segment-btn" data-value="Fitness-Studio">
+            <span class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M6.5 6.5h11"/><path d="M6.5 17.5h11"/><path d="M2 7v10"/><path d="M22 7v10"/></svg>
+            </span>
+            Fitness-Studio
+          </button>
+          <button type="button" class="segment-btn" data-value="Wellness-Hotel / Spa">
+            <span class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/></svg>
+            </span>
+            Wellness-Hotel · Spa
+          </button>
+          <button type="button" class="segment-btn" data-value="Trainer / Coach / Sonstiges">
+            <span class="icon-wrap">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </span>
+            Trainer · Coach · Sonstiges
+          </button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="phone">Telefon</label>
-        <input type="tel" id="phone" name="phone" required>
-      </div>
-      <div class="form-group">
-        <label for="email">E-Mail</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="segment">Ihr Einsatzzweck</label>
-        <select id="segment" name="segment" required>
-          <option value="">Bitte wählen</option>
-          <option>Ärztliche Praxis</option>
-          <option>Heilpraktiker</option>
-          <option>Physiotherapie</option>
-          <option>Fitness-Studio</option>
-          <option>Wellness-Hotel / Spa</option>
-          <option>Trainer / Coach</option>
-          <option>Sonstiges</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 8px;">
-        Beratungstermin anfragen
-      </button>
-      <div class="form-footer">
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        DSGVO-konform · Keine Weitergabe an Dritte
+
+      <!-- Step 2: Kontakt -->
+      <div class="form-step" data-step="2">
+        <button type="button" class="form-back" id="final-back-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Zurück
+        </button>
+
+        <div class="step-summary">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span id="final-segment-label">Praxis</span>
+        </div>
+
+        <h3>Rückruf binnen 24 Stunden</h3>
+        <p class="form-sub">Kostenlos, unverbindlich, persönlich von M. Marx.</p>
+
+        <input type="hidden" id="final-segment" name="segment" value="">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="f-phone">Telefon</label>
+            <input type="tel" id="f-phone" name="phone" required autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="f-email">E-Mail</label>
+          <input type="email" id="f-email" name="email" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="f-company">Unternehmen / Praxis</label>
+          <input type="text" id="f-company" name="company" required autocomplete="organization">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg btn-arrow" style="margin-top: 8px;">
+          Beratungstermin anfragen
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+
+        <div class="form-footer">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          DSGVO-konform · Keine Weitergabe an Dritte
+        </div>
       </div>
     </form>
   </div>
@@ -2319,41 +2366,56 @@
 })();
 </script>
 
-<!-- ====== MULTI-STEP HERO FORM ====== -->
+<!-- ====== MULTI-STEP FORMS (Hero + Final) ====== -->
 <script>
 (function () {
-  const form = document.getElementById('hero-form');
-  if (!form) return;
+  function initMultiStepForm(config) {
+    const form = document.getElementById(config.formId);
+    if (!form) return;
 
-  const stepCurrent = document.getElementById('step-current');
-  const segmentInput = document.getElementById('h-segment');
-  const segmentLabel = document.getElementById('segment-label');
-  const backBtn = document.getElementById('form-back-btn');
+    const stepCurrent = document.getElementById(config.stepCurrentId);
+    const segmentInput = document.getElementById(config.segmentInputId);
+    const segmentLabel = document.getElementById(config.segmentLabelId);
+    const backBtn = document.getElementById(config.backBtnId);
 
-  function setStep(n) {
-    form.dataset.step = n;
-    if (stepCurrent) stepCurrent.textContent = n;
-    // Focus erstes Eingabefeld bei Step 2
-    if (n === '2') {
-      setTimeout(() => {
-        const first = form.querySelector('.form-step[data-step="2"] input:not([type=hidden])');
-        if (first) first.focus();
-      }, 350);
+    function setStep(n) {
+      form.dataset.step = n;
+      if (stepCurrent) stepCurrent.textContent = n;
+      if (n === '2') {
+        setTimeout(() => {
+          const first = form.querySelector('.form-step[data-step="2"] input:not([type=hidden])');
+          if (first) first.focus();
+        }, 350);
+      }
     }
+
+    form.querySelectorAll('.segment-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const val = btn.dataset.value;
+        if (segmentInput) segmentInput.value = val;
+        if (segmentLabel) segmentLabel.textContent = val;
+        setStep('2');
+      });
+    });
+
+    if (backBtn) backBtn.addEventListener('click', () => setStep('1'));
   }
 
-  // Segment-Buttons → setze Wert + Step 2
-  form.querySelectorAll('.segment-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const val = btn.dataset.value;
-      if (segmentInput) segmentInput.value = val;
-      if (segmentLabel) segmentLabel.textContent = val;
-      setStep('2');
-    });
+  initMultiStepForm({
+    formId: 'hero-form',
+    stepCurrentId: 'step-current',
+    segmentInputId: 'h-segment',
+    segmentLabelId: 'segment-label',
+    backBtnId: 'form-back-btn'
   });
 
-  // Zurück-Button → Step 1
-  if (backBtn) backBtn.addEventListener('click', () => setStep('1'));
+  initMultiStepForm({
+    formId: 'final-form',
+    stepCurrentId: 'final-step-current',
+    segmentInputId: 'final-segment',
+    segmentLabelId: 'final-segment-label',
+    backBtnId: 'final-back-btn'
+  });
 })();
 </script>
 
