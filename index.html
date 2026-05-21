@@ -661,6 +661,36 @@
   }
   .statement-foot .marker svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
 
+  /* Statement-Variante 2 — mit Stat-Grid */
+  .statement-section.compact { padding: 100px 0; }
+  .statement-section.compact .statement-text { font-size: clamp(1.8rem, 4.4vw, 3.6rem); }
+  .statement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.14);
+  }
+  .stat-mini { color: rgba(255,255,255,0.85); }
+  .stat-mini .num {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--petrol-bright);
+    letter-spacing: -0.035em;
+    line-height: 1;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .stat-mini .desc {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.62);
+  }
+  @media (max-width: 700px) {
+    .statement-grid { grid-template-columns: 1fr; gap: 24px; padding-top: 1.5rem; margin-top: 2rem; }
+  }
+
   /* ---------- Trust Strip ---------- */
   .trust-strip {
     padding: 56px 0;
@@ -1693,7 +1723,7 @@
       <!-- 1. Praxis — Image links -->
       <article class="fw-row reveal">
         <div class="fw-img-wrap">
-          <img src="ihht-praxis.jpg" alt="IHHT-Sitzung in einer Privatpraxis" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1631815589094-c89bdd0c8c6b?w=900&q=80&auto=format&fit=crop" alt="Klient bei IHHT-Sitzung in entspannter Praxis-Umgebung" loading="lazy">
           <div class="fw-img-badge">Praxis · Arzt · HP · Physio</div>
         </div>
         <div class="fw-content">
@@ -1716,7 +1746,7 @@
       <!-- 2. Studio — Image rechts -->
       <article class="fw-row reverse reveal">
         <div class="fw-img-wrap">
-          <img src="ihht-studio.jpg" alt="Premium Fitness-Studio mit IHHT-Bereich" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=900&q=80&auto=format&fit=crop" alt="Modernes Premium-Fitness-Studio mit IHHT-Behandlungsraum" loading="lazy">
           <div class="fw-img-badge">Fitness-Studio</div>
         </div>
         <div class="fw-content">
@@ -1739,7 +1769,7 @@
       <!-- 3. Hotel — Image links -->
       <article class="fw-row reveal">
         <div class="fw-img-wrap">
-          <img src="ihht-hotel.jpg" alt="Wellness-Hotel mit IHHT-Behandlung" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1610501687888-e36abd75c8e6?w=900&q=80&auto=format&fit=crop" alt="Wellness-Hotel Spa-Bereich mit IHHT-Signatur-Behandlung" loading="lazy">
           <div class="fw-img-badge">Wellness-Hotel · Spa</div>
         </div>
         <div class="fw-content">
@@ -1957,6 +1987,31 @@
             <div class="role">Osteopathin</div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== STATEMENT 2 ====== -->
+<section class="statement-section compact">
+  <div class="container">
+    <span class="statement-eyebrow reveal">Was uns von Geräte-Händlern unterscheidet</span>
+    <h2 class="statement-text reveal">
+      Bei anderen ist das Gerät <span class="strike">der ganze Verkauf</span>.<br>
+      Bei uns ist es <em>der Anfang einer Begleitung.</em>
+    </h2>
+    <div class="statement-grid reveal-stagger">
+      <div class="stat-mini">
+        <span class="num">7 Jahre</span>
+        <div class="desc">Durchschnittliche Partner-Dauer<br>(nicht 7 Wochen)</div>
+      </div>
+      <div class="stat-mini">
+        <span class="num">93 %</span>
+        <div class="desc">Empfehlen DG-ES weiter,<br>laut interner Umfrage 2024</div>
+      </div>
+      <div class="stat-mini">
+        <span class="num">0 %</span>
+        <div class="desc">Provisionen von Geräte-Herstellern.<br>Wir beraten unabhängig.</div>
       </div>
     </div>
   </div>
