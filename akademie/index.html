@@ -63,6 +63,99 @@
 
         html { scroll-behavior: smooth; }
 
+        /* ---------- Animations ---------- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(76,144,201,0); }
+            50% { box-shadow: 0 0 0 12px rgba(76,144,201,0.12); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Hero initial load — instantly visible content */
+        .hero .eyebrow { animation: fadeUp 0.7s 0.05s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+        .hero h1 { animation: fadeUp 0.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+        .hero .sub { animation: fadeUp 0.7s 0.3s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+        .hero .hero-cta-row { animation: fadeUp 0.7s 0.45s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+        .hero .hero-trust { animation: fadeUp 0.7s 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+        .hero-visual { animation: slideInRight 0.9s 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+
+        /* Scroll-reveal: hidden state */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger: container with delayed children */
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-stagger.is-visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+        .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 70ms; }
+        .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 140ms; }
+        .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 210ms; }
+        .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 280ms; }
+        .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 350ms; }
+        .reveal-stagger.is-visible > *:nth-child(7) { transition-delay: 420ms; }
+        .reveal-stagger.is-visible > *:nth-child(8) { transition-delay: 490ms; }
+        .reveal-stagger.is-visible > *:nth-child(9) { transition-delay: 560ms; }
+        .reveal-stagger.is-visible > *:nth-child(10) { transition-delay: 630ms; }
+
+        /* CTA Box pulsing glow when revealed */
+        .cta-box.is-visible {
+            animation: glowPulse 3.5s 0.6s ease-in-out infinite;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .hero .eyebrow,
+            .hero h1,
+            .hero .sub,
+            .hero .hero-cta-row,
+            .hero .hero-trust,
+            .hero-visual {
+                animation: none !important;
+            }
+            .reveal, .reveal-stagger > * {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .cta-box.is-visible { animation: none !important; }
+        }
+
         body {
             font-family: var(--font);
             font-size: 17px;
@@ -174,6 +267,12 @@
             backdrop-filter: blur(18px) saturate(180%);
             -webkit-backdrop-filter: blur(18px) saturate(180%);
             border-bottom: 1px solid var(--line-soft);
+            transition: box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .nav.is-scrolled {
+            background: rgba(246,247,250,0.94);
+            box-shadow: 0 4px 24px rgba(15,37,65,0.08);
         }
 
         .nav-inner {
@@ -1534,28 +1633,28 @@
                             <div class="item-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                             </div>
-                            <strong>24+</strong>
+                            <strong data-count="24" data-suffix="+">24+</strong>
                             <span>Stunden</span>
                         </div>
                         <div class="item">
                             <div class="item-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                             </div>
-                            <strong>6</strong>
+                            <strong data-count="6">6</strong>
                             <span>Referenten</span>
                         </div>
                         <div class="item">
                             <div class="item-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
                             </div>
-                            <strong>8</strong>
+                            <strong data-count="8">8</strong>
                             <span>Fälle</span>
                         </div>
                         <div class="item">
                             <div class="item-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
                             </div>
-                            <strong>4</strong>
+                            <strong data-count="4">4</strong>
                             <span>Lektionen</span>
                         </div>
                     </div>
@@ -1632,16 +1731,16 @@
     <!-- TRUST -->
     <section class="section section-paper" style="padding-top: 96px; padding-bottom: 96px;">
         <div class="container">
-            <div class="trust-grid">
+            <div class="trust-grid reveal-stagger">
 
                 <div class="trust-card">
-                    <div class="trust-stat">24+</div>
+                    <div class="trust-stat" data-count="24" data-suffix="+">24+</div>
                     <p class="trust-label"><strong>Stunden HD-Aufzeichnung</strong> aus zwei kompletten DG-ES-Fachschulungen.</p>
                 </div>
 
                 <div class="trust-card trust-card-team">
                     <div>
-                        <div class="trust-stat">6</div>
+                        <div class="trust-stat" data-count="6">6</div>
                         <p class="trust-label"><strong>Spezialisten</strong> aus Internistik, Urologie, Gynäkologie, Atemtraining und DG-ES.</p>
                     </div>
                     <div class="trust-avatars">
@@ -1666,18 +1765,18 @@
                 </div>
 
                 <div class="trust-card">
-                    <div class="trust-stat">8</div>
+                    <div class="trust-stat" data-count="8">8</div>
                     <p class="trust-label"><strong>Reale Patientenfälle</strong> dokumentiert von Anamnese bis Therapieverlauf mit Laborwerten.</p>
                 </div>
 
                 <div class="trust-card trust-card-highlight">
                     <span class="trust-eyebrow">DG-ES seit 2004</span>
-                    <div class="trust-stat">20+</div>
+                    <div class="trust-stat" data-count="20" data-suffix="+">20+</div>
                     <p class="trust-label"><strong>Jahre IHHT-Expertise.</strong> Über 400 Partner im DACH-Raum. Evidenzbasiert, herstellerneutral.</p>
                 </div>
 
                 <div class="trust-card">
-                    <div class="trust-stat">4</div>
+                    <div class="trust-stat" data-count="4">4</div>
                     <p class="trust-label"><strong>Lektionen</strong> mit Kapitelmarken pro Video. Frankfurt 2024 plus Schweiz 2026.</p>
                 </div>
 
@@ -1688,13 +1787,13 @@
     <!-- PROBLEM -->
     <section class="section section-white">
         <div class="container">
-            <div class="section-head center">
+            <div class="section-head center reveal">
                 <span class="eyebrow">Die Realität in Ihrer Praxis</span>
                 <h2>Die Lücke zwischen Lehrbuch und Praxis.</h2>
                 <p class="lede">IHHT zu verstehen ist eine Sache. Sie sicher und systematisch in einer Praxis zu führen, ist eine andere. Wer mit der Therapie ernsthaft arbeitet, stößt auf Fragen, die in keinem Lehrbuch beantwortet werden.</p>
             </div>
 
-            <div class="problem-list">
+            <div class="problem-list reveal-stagger">
                 <div class="problem-item">
                     <span class="problem-num">01</span>
                     <p class="problem-text">Welche Diagnostik gehört vor jede Therapie und welche können Sie sich sparen?</p>
@@ -1724,13 +1823,13 @@
     <!-- MODULE -->
     <section class="section section-paper">
         <div class="container">
-            <div class="section-head center">
+            <div class="section-head center reveal">
                 <span class="eyebrow">Was Sie bekommen</span>
                 <h2>Vier Lektionen. Zwei Schulungen. Ein Lernweg.</h2>
                 <p class="lede">Zwei vollständig aufgezeichnete DG-ES-Fachschulungen, kombiniert in einem Kurs. Frankfurt liefert das Fundament, Schweiz das Update für Fortgeschrittene.</p>
             </div>
 
-            <div class="modules-grid">
+            <div class="modules-grid reveal-stagger">
                 <div class="module-card">
                     <div class="module-number">01</div>
                     <div class="module-icon">
@@ -1802,13 +1901,13 @@
     <!-- REFERENTEN (DARK) -->
     <section class="section section-dark">
         <div class="container">
-            <div class="section-head center">
+            <div class="section-head center reveal">
                 <span class="eyebrow">Das Team</span>
                 <h2>Sechs Spezialisten. Ein Lernweg.</h2>
                 <p class="lede">Diese Schulung ist nicht von einer Person. Sie kombiniert sechs Fachreferentinnen und Fachreferenten aus unterschiedlichen Disziplinen.</p>
             </div>
 
-            <div class="referenten-grid">
+            <div class="referenten-grid reveal-stagger">
                 <div class="referent-card">
                     <div class="referent-photo">MM</div>
                     <div class="referent-name">Michael Marx</div>
@@ -1857,13 +1956,13 @@
     <!-- PATIENTENFÄLLE -->
     <section class="section section-paper">
         <div class="container">
-            <div class="section-head center">
+            <div class="section-head center reveal">
                 <span class="eyebrow">Echte Fälle, echte Verläufe</span>
                 <h2>Acht reale Patientenfälle.</h2>
                 <p class="lede">Von der Anamnese bis zum Therapieverlauf. Mit echten Laborwerten, echten Entscheidungen und vollständig dokumentierter Therapieführung.</p>
             </div>
 
-            <div class="cases-grid">
+            <div class="cases-grid reveal-stagger">
                 <div class="case-badge">
                     <div class="case-num">Fall 01</div>
                     <div class="case-title">Post-Covid + ME/CFS (30 J.)</div>
@@ -1905,13 +2004,13 @@
     <!-- LERNZIELE -->
     <section class="section section-white">
         <div class="container">
-            <div class="section-head center">
+            <div class="section-head center reveal">
                 <span class="eyebrow">Lernziele</span>
                 <h2>Was Sie nach dem Kurs anwenden können.</h2>
                 <p class="lede">Nicht "verstehen". Nicht "kennen". Anwenden.</p>
             </div>
 
-            <div class="ziele-grid">
+            <div class="ziele-grid reveal-stagger">
                 <div class="ziel-item">
                     <span class="ziel-num">01</span>
                     <div class="ziel-text">Die richtige Diagnostik vor jeder IHHT-Therapie auswählen</div>
@@ -1959,7 +2058,7 @@
     <!-- CTA BOX -->
     <section class="section section-paper" id="kaufen">
         <div class="container">
-            <div class="cta-box">
+            <div class="cta-box reveal">
                 <span class="eyebrow">Sofort verfügbar</span>
                 <h2>Über 24 Stunden Fachschulung. Sofort streambar.</h2>
                 <p>Einmaliger Kauf. Dauerhafter Zugriff. Streaming auf Desktop, Tablet und Smartphone.</p>
@@ -1978,7 +2077,7 @@
                     <h2>Häufige Fragen.<br><em>Klar beantwortet.</em></h2>
                 </div>
 
-                <div class="faq-list">
+                <div class="faq-list reveal-stagger">
                 <details class="faq-item">
                     <summary class="faq-question">Brauche ich IHHT-Vorkenntnisse?</summary>
                     <div class="faq-answer">Ja. Diese Schulung ist kein Einsteiger-Kurs. Sie brauchen Grundwissen über mitochondriale Funktion und idealerweise erste praktische IHHT-Erfahrung.</div>
@@ -2053,6 +2152,90 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        (function() {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // ===== Scroll Reveal =====
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+            document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // ===== Number Counter =====
+            function animateCount(el, target, duration) {
+                if (prefersReducedMotion) {
+                    el.textContent = target + (el.dataset.suffix || '');
+                    return;
+                }
+                const suffix = el.dataset.suffix || '';
+                const startTime = performance.now();
+
+                function step(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.floor(eased * target);
+                    el.textContent = current + suffix;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        el.textContent = target + suffix;
+                    }
+                }
+
+                requestAnimationFrame(step);
+            }
+
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.dataset.count, 10);
+                        const duration = target > 20 ? 1400 : 900;
+                        animateCount(el, target, duration);
+                        counterObserver.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('[data-count]').forEach(el => {
+                if (!prefersReducedMotion) {
+                    el.textContent = '0' + (el.dataset.suffix || '');
+                }
+                counterObserver.observe(el);
+            });
+
+            // ===== Nav shadow on scroll =====
+            const nav = document.querySelector('.nav');
+            if (nav) {
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        requestAnimationFrame(() => {
+                            if (window.scrollY > 20) {
+                                nav.classList.add('is-scrolled');
+                            } else {
+                                nav.classList.remove('is-scrolled');
+                            }
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+            }
+        })();
+    </script>
 
 </body>
 </html>
