@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DG-ES Content-Handbuch — SEO &amp; KI-Suche für Blogartikel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* DG-ES Farbwelt: Navy + DG-ES-Blau, abgeleitet aus der Partner-Landingpage */
+  --primary:#2E74B8;        /* DG-ES-Blau, Akzent & Links */
+  --primary-dark:#1A4D86;   /* dunkleres Blau für Links auf Weiß */
+  --ink:#15233F;            /* Navy, Fließtext & Headlines */
+  --muted:#5A6A82;
+  --paper:#F2F6FB;          /* hellblau-graue Fläche */
+  --sand:#E7EFF8;           /* helles Blau-Panel */
+  --sand-line:#CBDAEA;
+  --amber:#B5443C;          /* semantisches Rot nur für "Vermeiden" */
+  --amber-soft:#FBECEA;
+  --line:#D3DEEA;
+  --ok:#2E74B8;
+  --maxw:840px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Spectral",Georgia,serif;font-size:18px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+h1,h2,h3,h4,.eyebrow,.label,.kicker,nav,th,.btn{font-family:"Archivo",-apple-system,Segoe UI,sans-serif}
+a{color:var(--primary-dark);text-decoration:none;border-bottom:1px solid rgba(46,116,184,.35)}
+a:hover{border-bottom-color:var(--primary-dark)}
+code,kbd,pre{font-family:"JetBrains Mono",ui-monospace,monospace}
+
+/* ---------- COVER ---------- */
+.cover{
+  background:linear-gradient(160deg,#14365F 0%,#1C5285 55%,#2E7BB0 100%);
+  color:#ECF2FB;padding:62px 0 54px;position:relative;overflow:hidden;
+}
+.cover:after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;
+  border-radius:50%;background:radial-gradient(circle at center,rgba(255,255,255,.12),transparent 70%)}
+.cover .wrap{position:relative;z-index:2}
+.cover .logo{height:34px;margin-bottom:34px;filter:brightness(0) invert(1);opacity:.97}
+.cover .logo-fallback{font-family:"Archivo";font-weight:800;letter-spacing:.04em;font-size:20px;color:#fff;margin-bottom:34px;display:none}
+.cover .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#AECDEC}
+.cover h1{font-size:43px;line-height:1.06;font-weight:800;margin:14px 0 16px;letter-spacing:-.01em;max-width:14ch}
+.cover .lead{font-family:"Spectral";font-size:20px;line-height:1.5;max-width:52ch;color:#E3EDF9;font-weight:400}
+.cover .meta{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px 26px;font-family:"Archivo";font-size:13px;letter-spacing:.02em;color:#BCD3EC}
+.cover .meta b{color:#fff;font-weight:600}
+
+/* ---------- SECTIONS ---------- */
+section{padding:46px 0;border-bottom:1px solid var(--line)}
+.snum{font-family:"Archivo";font-weight:700;font-size:13px;letter-spacing:.18em;color:var(--primary);text-transform:uppercase}
+h2{font-size:30px;line-height:1.12;font-weight:800;letter-spacing:-.01em;margin:6px 0 18px}
+h3{font-size:20.5px;font-weight:700;margin:30px 0 8px;letter-spacing:-.005em}
+h4{font-size:15px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:20px 0 6px}
+p{margin:0 0 15px}
+.lead-p{font-size:20px;color:#28332F}
+ul,ol{margin:0 0 16px;padding-left:22px}
+li{margin:6px 0}
+strong{font-weight:600}
+.small{font-size:14.5px;color:var(--muted)}
+
+/* ---------- TOC ---------- */
+.toc{background:var(--sand);border:1px solid var(--sand-line);border-radius:14px;padding:22px 26px;margin:8px 0 0}
+.toc h4{margin:0 0 10px;color:var(--primary-dark)}
+.toc ol{counter-reset:t;list-style:none;padding:0;margin:0;columns:2;column-gap:34px}
+.toc li{counter-increment:t;margin:7px 0;font-family:"Archivo";font-size:14.5px;break-inside:avoid}
+.toc li:before{content:counter(t,decimal-leading-zero);color:var(--primary);font-weight:700;margin-right:10px}
+.toc a{border:none;color:var(--ink)}
+.toc a:hover{color:var(--primary-dark)}
+
+/* ---------- LADDER (signature) ---------- */
+.ladder{margin:22px 0 6px;display:flex;flex-direction:column;gap:10px}
+.rung{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:18px;
+  background:#fff;border:1px solid var(--line);border-left:5px solid var(--primary);
+  border-radius:12px;padding:15px 18px}
+.rung .rk{font-family:"Archivo";font-weight:800;font-size:24px;color:var(--primary);text-align:center}
+.rung h3{margin:0 0 2px;font-size:17.5px}
+.rung p{margin:0;font-size:14.5px;color:var(--muted);line-height:1.45}
+.weight{display:flex;gap:4px;align-items:center}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--sand-line)}
+.dot.on{background:var(--primary)}
+.rung:nth-child(1){border-left-color:#15233F}
+.rung:nth-child(1) .rk{color:#15233F}
+.rung:nth-child(5),.rung:nth-child(6){border-left-color:#A9C4E2}
+.rung:nth-child(5) .rk,.rung:nth-child(6) .rk{color:#6286AE}
+
+/* ---------- CHECKLIST ---------- */
+.check{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 22px;margin:14px 0}
+.check .grp{padding:16px 0;border-bottom:1px dashed var(--sand-line)}
+.check .grp:last-child{border-bottom:none}
+.check .grp > span{font-family:"Archivo";font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--primary)}
+.check ul{list-style:none;padding:0;margin:10px 0 0}
+.check li{position:relative;padding-left:30px;margin:9px 0;font-size:16px}
+.check li:before{content:"";position:absolute;left:0;top:3px;width:17px;height:17px;border:2px solid var(--primary);border-radius:4px}
+
+/* ---------- CALLOUT / DO-DONT ---------- */
+.callout{border-radius:12px;padding:16px 20px;margin:16px 0;font-size:15.5px}
+.callout.fix{background:#E7EFF8;border:1px solid #C2D7EC}
+.callout.warn{background:var(--amber-soft);border:1px solid #EFC9C4}
+.callout b{font-family:"Archivo";font-weight:700}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.box{border-radius:12px;padding:14px 18px;font-size:15px}
+.box.no{background:var(--amber-soft);border:1px solid #EFC9C4}
+.box.yes{background:#E7EFF8;border:1px solid #C2D7EC}
+.box .t{font-family:"Archivo";font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.box.no .t{color:var(--amber)}
+.box.yes .t{color:var(--primary-dark)}
+
+/* ---------- TABLE ---------- */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+th{background:var(--primary);color:#fff;text-align:left;padding:11px 14px;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:#fff}
+td.l{font-weight:600;font-family:"Archivo";font-size:14px}
+
+/* ---------- CODE ---------- */
+pre{background:#0F2038;color:#DCE7F2;border-radius:12px;padding:20px 22px;overflow:auto;
+  font-size:13px;line-height:1.6;margin:14px 0}
+pre .c{color:#7FA3C8}
+pre .k{color:#9FC6EE}
+pre .s{color:#BBD9F2}
+.inline{background:var(--sand);border:1px solid var(--sand-line);border-radius:5px;padding:1px 6px;font-size:14px}
+
+/* ---------- FOOTER ---------- */
+footer{background:#0F2038;color:#BCCFE4;padding:40px 0;font-family:"Archivo";font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:flex-end}
+footer b{color:#fff;font-weight:600}
+footer a{color:#AECDEC;border:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:680px){
+  body{font-size:17px}
+  .cover h1{font-size:32px}
+  .duo{grid-template-columns:1fr}
+  .toc ol{columns:1}
+  .rung{grid-template-columns:38px 1fr;gap:12px}
+  .weight{grid-column:2;margin-top:6px}
+}
+@media print{
+  :root{--paper:#fff}
+  body{font-size:11.5pt}
+  .cover{background:#1C5285 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{break-inside:avoid;padding:22px 0}
+  .rung,.box,.callout,.check,table,pre{break-inside:avoid}
+  th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a{border:none}
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="wrap">
+    <img class="logo" src="https://dg-es.de/images/design/DGES_Logo_schwarz.png" alt="DG-ES" onerror="this.style.display='none';document.querySelector('.logo-fallback').style.display='block'">
+    <div class="logo-fallback">DEUTSCHE GESELLSCHAFT FÜR ERNÄHRUNG UND SPORT</div>
+    <div class="eyebrow">Content-Handbuch · Redaktion</div>
+    <h1>Artikel, die Google rankt und KI zitiert</h1>
+    <p class="lead">Das DG-ES-Playbook für SEO- und GEO-optimierte Wissenschafts-Beiträge. Eine Arbeitsgrundlage, die auf jeden Blogartikel angewendet wird, bevor er live geht.</p>
+    <div class="meta">
+      <span><b>Version</b> 1.0</span>
+      <span><b>Stand</b> Juni 2026</span>
+      <span><b>Geltung</b> dg-es.de/wissenschaft/blog</span>
+      <span><b>Reviewzyklus</b> halbjährlich</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 00 -->
+<section id="kontext">
+  <div class="snum">00 · Ausgangslage</div>
+  <h2>Warum dieses Handbuch existiert</h2>
+  <p class="lead-p">Suche läuft seit 2025 auf zwei Spielfeldern. Klassische Trefferlisten bei Google, und KI-Antworten in Google AI Overviews, ChatGPT-Suche, Perplexity und Gemini. Wer 2026 gefunden werden will, muss beides bedienen: ranken (SEO) und zitiert werden (GEO).</p>
+  <p>Für eine Fachgesellschaft im Gesundheitsbereich ist die zweite Disziplin der größere Hebel und zugleich die höhere Hürde. KI-Systeme bevorzugen belegte, fachlich autorisierte Quellen. Genau das kann DG-ES liefern, wenn die Inhalte die richtigen Signale tragen.</p>
+
+  <h4>Vier Fakten, die die Spielregeln 2026 bestimmen</h4>
+  <table>
+    <tr><th style="width:34%">Fakt</th><th>Konsequenz für die Redaktion</th></tr>
+    <tr><td class="l">FAQ-Rich-Results sind seit 7. Mai 2026 abgeschaltet, auch für Health-Sites</td><td>Keine ausklappbaren FAQ-Snippets mehr bei Google. FAQ-Markup bleibt gültig und wird von Google zum Seitenverständnis sowie von Bing und KI-Crawlern weiter gelesen. Also kein Top-Hebel, aber als Verständnishilfe weiter nützlich.</td></tr>
+    <tr><td class="l">KI zitiert nach Autorität und Belegen</td><td>Originaldaten, prüfbare Zahlen und verlinkte Primärquellen erhöhen die Zitierwahrscheinlichkeit deutlich. Ungestützte Behauptungen werden seltener übernommen.</td></tr>
+    <tr><td class="l">Page-1-Ranking korreliert stark (~0,65) mit KI-Erwähnungen</td><td>SEO ist nicht tot, es ist das Fundament. Wer bei Google rankt, wird auch häufiger von LLMs zitiert.</td></tr>
+    <tr><td class="l">3-Monats-Zitations-Cliff</td><td>KI bevorzugt frische Inhalte. Artikel mit aktuellem Datum und sichtbaren Updates schlagen veraltete.</td></tr>
+  </table>
+
+  <div class="callout warn"><b>YMYL-Hinweis.</b> Gesundheitsthemen gelten als "Your Money or Your Life". Google und KI-Modelle legen hier den strengsten Vertrauensmaßstab an (E-A-T: Expertise, Autorität, Vertrauen). Ohne klare Autor- und Quellensignale behandeln beide einen Text als anonyme Meinung, unabhängig von der inhaltlichen Qualität.</div>
+</section>
+
+<!-- TOC -->
+<section id="inhalt" style="padding-top:32px">
+  <div class="toc">
+    <h4>Inhalt</h4>
+    <ol>
+      <li><a href="#rangliste">Die Hebel-Rangliste</a></li>
+      <li><a href="#checkliste">Pre-Publish-Checkliste</a></li>
+      <li><a href="#bausteine">Bausteine im Detail</a></li>
+      <li><a href="#fallbeispiel">Fallbeispiel IHHT-Gerätekauf</a></li>
+      <li><a href="#vorlagen">Copy-paste-Vorlagen</a></li>
+      <li><a href="#glossar">Glossar</a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 01 -->
+<section id="rangliste">
+  <div class="snum">01 · Priorität</div>
+  <h2>Die Hebel-Rangliste</h2>
+  <p>Nicht jeder Optimierungsschritt wiegt gleich viel. Diese Reihenfolge ist nach realem Effekt auf Ranking und KI-Zitierbarkeit sortiert. Energie zuerst oben investieren, nicht unten.</p>
+
+  <div class="ladder">
+    <div class="rung">
+      <div class="rk">1</div>
+      <div><h3>Autorität &amp; E-A-T</h3><p>Namentlicher Autor mit Qualifikation, Autorenbox, seriöse Über-uns-Seite, Verweis auf die Fachgesellschaft. Der größte Hebel im Gesundheitsbereich.</p></div>
+      <div class="weight"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div>
+    </div>
+    <div class="rung">
+      <div class="rk">2</div>
+      <div><h3>Belegte Aussagen</h3><p>Jede fachliche Behauptung mit verlinkter Primärquelle (PubMed, Journal, Leitlinie), konkreten Zahlen und kurzen Zitaten. Macht Aussagen für KI nachprüfbar.</p></div>
+      <div class="weight"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></div>
+    </div>
+    <div class="rung">
+      <div class="rk">3</div>
+      <div><h3>Struktur &amp; Klarheit</h3><p>Antwort zuerst, frageförmige Zwischenüberschriften, modulare Absätze, Tabellen und Listen. KI extrahiert daraus saubere Antwort-Einheiten.</p></div>
+      <div class="weight"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></div>
+    </div>
+    <div class="rung">
+      <div class="rk">4</div>
+      <div><h3>Aktualität</h3><p>Sichtbares Veröffentlichungs- und Aktualisierungsdatum, regelmäßige Updates der Kern-Artikel. Schlägt den 3-Monats-Cliff.</p></div>
+      <div class="weight"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
+    </div>
+    <div class="rung">
+      <div class="rk">5</div>
+      <div><h3>Technik &amp; Meta</h3><p>Artikelspezifische Meta-Description, klarer Title, interne Verlinkung im Fließtext, Schema als Verständnishilfe. Hygiene, kein Wunderhebel.</p></div>
+      <div class="weight"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    </div>
+    <div class="rung">
+      <div class="rk">6</div>
+      <div><h3>Off-Page &amp; Erwähnungen</h3><p>Nennungen auf Drittseiten, LinkedIn, Fachforen, Verzeichnissen. LLMs gewichten Drittquellen stark. Langfristarbeit.</p></div>
+      <div class="weight"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    </div>
+  </div>
+  <p class="small">Punkte = relativer Effekt auf Sichtbarkeit in Google und KI-Antworten. Rang 1 bis 4 entscheiden, ob ein Artikel zitiert wird. Rang 5 und 6 verstärken.</p>
+</section>
+
+<!-- 02 -->
+<section id="checkliste">
+  <div class="snum">02 · Operativ</div>
+  <h2>Pre-Publish-Checkliste</h2>
+  <p>Kein Artikel geht live, bevor diese Liste durchläuft. Sie folgt der Rangliste von oben. Wer keine Zeit für alles hat, arbeitet die Liste von oben nach unten ab und stoppt, wenn die Zeit endet.</p>
+
+  <div class="check">
+    <div class="grp">
+      <span>Autorität</span>
+      <ul>
+        <li>Namentlicher Autor mit Qualifikation am Artikel sichtbar (z. B. Dipl.-Sportwiss., Heilpraktiker, Arzt)</li>
+        <li>Kurze Autorenbox am Ende mit Rolle bei DG-ES und Link zur Profilseite</li>
+        <li>Bei medizinischen Aussagen: fachlicher Review vermerkt ("fachlich geprüft von …")</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <span>Belege</span>
+      <ul>
+        <li>Jede "Studien zeigen"-Aussage durch mindestens eine verlinkte Primärquelle ersetzt</li>
+        <li>Mindestens zwei bis drei Outbound-Links auf PubMed, Journal oder Leitlinie</li>
+        <li>Konkrete Zahlen statt Allgemeinplätzen, wo verfügbar (Prozent, Dosis, Studiengröße)</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <span>Struktur</span>
+      <ul>
+        <li>Direkt unter der H1 ein Antwort-Absatz, der die Hauptfrage in zwei bis drei Sätzen beantwortet</li>
+        <li>Zwischenüberschriften als echte Nutzerfragen formuliert</li>
+        <li>Eine Tabelle oder Liste pro langem Abschnitt, die KI als Antwort-Einheit extrahieren kann</li>
+        <li>Absätze modular: ein Gedanke pro Absatz, kein Textblock über 6 Zeilen</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <span>Aktualität</span>
+      <ul>
+        <li>Veröffentlichungsdatum sichtbar, bei Updates Aktualisierungsdatum ergänzt</li>
+        <li>Kern-Artikel stehen im Halbjahres-Review zur Auffrischung an</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <span>Technik &amp; Meta</span>
+      <ul>
+        <li>Meta-Description artikelspezifisch, 140 bis 160 Zeichen, mit Hauptkeyword und Antwortversprechen (nicht die Joomla-Standardbeschreibung der Gesellschaft)</li>
+        <li>Meta-Title eindeutig, Keyword vorn, nicht doppelt mit der H1 identisch befüllt</li>
+        <li>Zwei bis vier interne Links im Fließtext auf passende DG-ES-Seiten (IHHT, HRV-Messung, FAQ)</li>
+        <li>JSON-LD eingebunden: Article + Person (+ optional FAQPage)</li>
+        <li>Aussagekräftiger Alt-Text an jedem Bild</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="bausteine">
+  <div class="snum">03 · Detail</div>
+  <h2>Bausteine im Detail</h2>
+
+  <h3>3.1 Autor &amp; E-A-T</h3>
+  <p>Der wichtigste und am häufigsten vergessene Baustein. Ein Gesundheitsartikel ohne erkennbaren Fachautor ist für Google und KI eine anonyme Quelle.</p>
+  <div class="duo">
+    <div class="box no"><div class="t">Vermeiden</div>Artikel ohne Verfasser, nur "DG-ES-Redaktion", keine Credentials, kein Profil.</div>
+    <div class="box yes"><div class="t">Stattdessen</div>"Autor: Michael Marx, Dipl.-Sportwiss. (Univ.)" mit Link zur Profilseite und einem Satz zur Rolle bei DG-ES.</div>
+  </div>
+
+  <h3>3.2 Quellen verlinken</h3>
+  <p>Belege machen Aussagen zitierfähig. Eine KI übernimmt eine Aussage lieber, wenn sie gegen eine echte Quelle abgesichert ist.</p>
+  <div class="duo">
+    <div class="box no"><div class="t">Vermeiden</div>"Studien und Reviews betonen, dass die Effekte dosisabhängig sind."</div>
+    <div class="box yes"><div class="t">Stattdessen</div>"Eine Übersichtsarbeit zur intermittierenden Hypoxie (Verlinkung auf PubMed) zeigt, dass Wirkung und Risiko von Dosis, Dauer und Anzahl der Phasen abhängen."</div>
+  </div>
+
+  <h3>3.3 Meta-Title &amp; Meta-Description</h3>
+  <p>Beide steuern, was Google im Snippet zeigt und welches Thema KI dem Artikel zuordnet. Die aktuelle DG-ES-Description ist eine Joomla-Standardbeschreibung der Gesellschaft. Das ist ein falsches Signal für jeden einzelnen Artikel.</p>
+  <h4>Formel Meta-Description</h4>
+  <p class="small">[Hauptfrage als Aufhänger] + [Antwortversprechen mit den 2 bis 3 Kernkriterien]. 140 bis 160 Zeichen.</p>
+  <div class="callout fix"><b>Beispiel (IHHT-Artikel).</b> "Preiswerte oder hochwertige IHHT-Geräte? Worauf es beim Kauf wirklich ankommt: Dosissteuerung, Monitoring, CE-Klasse und individuelle Betreuung statt Standardprogramm."</div>
+
+  <h3>3.4 Antwort zuerst</h3>
+  <p>Direkt unter die Überschrift gehört ein kurzer Block, der die Kernfrage sofort beantwortet. KI-Systeme greifen diesen Direktantwort-Block bevorzugt ab.</p>
+  <div class="callout fix"><b>Muster.</b> "Worauf kommt es beim IHHT-Gerätekauf an? Auf drei Dinge: präzise steuerbare Sauerstoffdosis, kontinuierliches Monitoring von Sättigung und Herzfrequenz, und fachliche Betreuung statt Standardprogramm. Der Preis allein sagt wenig über die Eignung."</div>
+
+  <h3>3.5 Frageförmige Überschriften &amp; Struktur</h3>
+  <p>Menschen tippen Fragen in ChatGPT und Google. Überschriften, die diese Fragen wörtlich treffen, matchen die Suchanfrage direkt.</p>
+  <div class="duo">
+    <div class="box no"><div class="t">Vermeiden</div>"Der Preisunterschied", "Standardprogramm oder Betreuung"</div>
+    <div class="box yes"><div class="t">Stattdessen</div>"Sind teure IHHT-Geräte automatisch besser?", "Reichen Bücher und Videos für IHHT aus?"</div>
+  </div>
+
+  <h3>3.6 Interne Verlinkung</h3>
+  <p>Links im Fließtext führen Leser und Crawler zu verwandten DG-ES-Seiten und stärken das Themencluster. Navigation und Related-Posts allein reichen nicht, Google gewichtet Body-Links höher.</p>
+  <p class="small">Pro Artikel zwei bis vier kontextnahe Links setzen, etwa von "Monitoring von Sauerstoffsättigung" auf die <span class="inline">HRV-Messung</span>, von "IHHT als betreuter Prozess" auf <span class="inline">IHHT Zelltraining</span>.</p>
+
+  <h3>3.7 Aktualität pflegen</h3>
+  <p>Kern-Artikel im Halbjahres-Review öffnen, neue Studienlage ergänzen, Aktualisierungsdatum setzen. Ein sichtbares "aktualisiert am" schlägt einen unveränderten Artikel von vor zwei Jahren.</p>
+
+  <h3>3.8 Schema-Markup</h3>
+  <p>Strukturierte Daten helfen Suchmaschinen und Crawlern, Inhalt und Autor maschinell zu verstehen. Realistische Einordnung 2026:</p>
+  <table>
+    <tr><th style="width:30%">Typ</th><th>Status &amp; Empfehlung</th></tr>
+    <tr><td class="l">Article + Person</td><td>Pflicht. Trägt Autor, Datum und Herausgeber maschinenlesbar. Stärkstes E-A-T-Signal auf Code-Ebene.</td></tr>
+    <tr><td class="l">MedicalWebPage</td><td>Empfohlen für Gesundheitsinhalte. Signalisiert den medizinischen Kontext klar.</td></tr>
+    <tr><td class="l">FAQPage</td><td>Optional. Erzeugt seit Mai 2026 kein Google-Snippet mehr, wird aber von Google zum Seitenverständnis und von Bing und KI-Crawlern weiter gelesen. Nur einbauen, wenn die Fragen echt im Text beantwortet werden, nicht zur Dekoration.</td></tr>
+  </table>
+</section>
+
+<!-- 04 -->
+<section id="fallbeispiel">
+  <div class="snum">04 · Anwendung</div>
+  <h2>Fallbeispiel: IHHT-Gerätekauf</h2>
+  <p>Der Artikel <span class="inline">dg-es.de/.../ihht-geraetekauf-worauf-kommt-es-an</span> ist inhaltlich stark: klare Definition, fairer Vergleich, merkbare Kernbotschaft ("viel hilft nicht viel"). Technisch fehlt die zitierfähige Hülle. So sieht die Lücke aus.</p>
+  <table>
+    <tr><th style="width:26%">Element</th><th style="width:37%">Aktuell</th><th>Maßnahme</th></tr>
+    <tr><td class="l">Meta-Description</td><td>Joomla-Standard über die Gesellschaft</td><td>Artikelspezifisch neu schreiben (siehe 3.3)</td></tr>
+    <tr><td class="l">Autor / E-A-T</td><td>Kein Verfasser sichtbar</td><td>Fachautor mit Qualifikation + Autorenbox ergänzen</td></tr>
+    <tr><td class="l">Quellen</td><td>"Studien zeigen" ohne Links</td><td>2 bis 3 Reviews zu intermittierender Hypoxie verlinken</td></tr>
+    <tr><td class="l">Antwort-Block</td><td>Einstieg über Definition</td><td>Direktantwort-Block unter die H1 setzen</td></tr>
+    <tr><td class="l">Überschriften</td><td>teils frageförmig, teils nicht</td><td>Alle H2/H3 in echte Nutzerfragen umformulieren</td></tr>
+    <tr><td class="l">Interne Links</td><td>Keine im Fließtext</td><td>Links auf IHHT Zelltraining und HRV-Messung setzen</td></tr>
+    <tr><td class="l">Schema</td><td>Nicht aus dem Text prüfbar</td><td>Article + Person verifizieren oder einbauen (siehe 05)</td></tr>
+  </table>
+  <div class="callout fix"><b>Reihenfolge.</b> Erst Autor und Quellen (Rang 1 und 2), dann Antwort-Block und Überschriften (Rang 3), dann Meta und Schema (Rang 5). In dieser Reihenfolge holt der Artikel den größten Sichtbarkeitsgewinn pro investierter Minute.</div>
+</section>
+
+<!-- 05 -->
+<section id="vorlagen">
+  <div class="snum">05 · Werkzeug</div>
+  <h2>Copy-paste-Vorlagen</h2>
+  <p>Platzhalter in <span class="inline">[eckigen Klammern]</span> ersetzen. JSON-LD im Joomla-Artikel als Custom-HTML oder über das Template in den <span class="inline">&lt;head&gt;</span> einbinden.</p>
+
+  <h4>JSON-LD: Article + Person + MedicalWebPage</h4>
+<pre><span class="c">&lt;!-- in den &lt;head&gt; der Artikelseite --&gt;</span>
+&lt;script type=<span class="s">"application/ld+json"</span>&gt;
+{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: [<span class="s">"MedicalWebPage"</span>, <span class="s">"Article"</span>],
+  <span class="k">"headline"</span>: <span class="s">"IHHT Gerätekauf: Worauf kommt es an?"</span>,
+  <span class="k">"description"</span>: <span class="s">"[artikelspezifische Meta-Description]"</span>,
+  <span class="k">"datePublished"</span>: <span class="s">"[JJJJ-MM-TT]"</span>,
+  <span class="k">"dateModified"</span>: <span class="s">"[JJJJ-MM-TT]"</span>,
+  <span class="k">"author"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"Person"</span>,
+    <span class="k">"name"</span>: <span class="s">"Michael Marx"</span>,
+    <span class="k">"honorificPrefix"</span>: <span class="s">"Dipl.-Sportwiss. (Univ.)"</span>,
+    <span class="k">"url"</span>: <span class="s">"https://dg-es.de/[autorenprofil]"</span>
+  },
+  <span class="k">"publisher"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"Organization"</span>,
+    <span class="k">"name"</span>: <span class="s">"Deutsche Gesellschaft für Ernährung und Sport"</span>,
+    <span class="k">"logo"</span>: {
+      <span class="k">"@type"</span>: <span class="s">"ImageObject"</span>,
+      <span class="k">"url"</span>: <span class="s">"https://dg-es.de/images/design/DGES_Logo_schwarz.png"</span>
+    }
+  },
+  <span class="k">"mainEntityOfPage"</span>: <span class="s">"https://dg-es.de/wissenschaft/blog/ihht-geraetekauf-worauf-kommt-es-an"</span>
+}
+&lt;/script&gt;</pre>
+
+  <h4>JSON-LD: FAQPage (optional, nur bei echten Antworten im Text)</h4>
+<pre>&lt;script type=<span class="s">"application/ld+json"</span>&gt;
+{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"FAQPage"</span>,
+  <span class="k">"mainEntity"</span>: [
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"Sind teure IHHT-Geräte automatisch besser?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"[Antwort aus dem Text]"</span> }
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"Reichen Bücher und Videos für IHHT aus?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"[Antwort aus dem Text]"</span> }
+    }
+  ]
+}
+&lt;/script&gt;</pre>
+
+  <h4>Textbaustein Autorenbox</h4>
+  <div class="callout fix">Über den Autor: [Name], [Qualifikation], ist [Rolle] bei der Deutschen Gesellschaft für Ernährung und Sport und arbeitet seit [X] Jahren im Bereich [Schwerpunkt]. Mehr Beiträge: [Link zur Profilseite].</div>
+</section>
+
+<!-- 06 -->
+<section id="glossar">
+  <div class="snum">06 · Referenz</div>
+  <h2>Glossar</h2>
+  <table>
+    <tr><th style="width:22%">Begriff</th><th>Bedeutung</th></tr>
+    <tr><td class="l">SEO</td><td>Search Engine Optimization. Optimierung, um in der klassischen Google-Trefferliste zu ranken.</td></tr>
+    <tr><td class="l">GEO</td><td>Generative Engine Optimization. Optimierung, um von KI-Antwortmaschinen zitiert zu werden. Ziel ist Erwähnungs-Häufigkeit, keine feste Position.</td></tr>
+    <tr><td class="l">AEO</td><td>Answer Engine Optimization. Eng verwandt mit GEO, Fokus auf direkt extrahierbare Antworten.</td></tr>
+    <tr><td class="l">E-A-T</td><td>Expertise, Authoritativeness, Trust. Googles Vertrauensmaßstab, im Gesundheitsbereich besonders streng.</td></tr>
+    <tr><td class="l">YMYL</td><td>Your Money or Your Life. Themen mit Wirkung auf Gesundheit oder Finanzen, höchste Qualitätsanforderung.</td></tr>
+    <tr><td class="l">RAG</td><td>Retrieval-Augmented Generation. Verfahren, mit dem KI live Quellen abruft und in die Antwort einbaut. Erklärt, warum belegte, auffindbare Inhalte zitiert werden.</td></tr>
+    <tr><td class="l">Rich Result</td><td>Erweiterte Google-Anzeige aus strukturierten Daten. FAQ-Variante seit Mai 2026 abgeschaltet.</td></tr>
+    <tr><td class="l">Schema / JSON-LD</td><td>Strukturierte Daten im Quelltext, die Suchmaschinen und Crawlern den Inhalt maschinenlesbar erklären.</td></tr>
+  </table>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b>DG-ES Content-Handbuch</b> · Version 1.0 · Juni 2026<br>
+      Deutsche Gesellschaft für Ernährung und Sport · Leißstr. 22 · 83620 Feldkirchen-Westerham
+    </div>
+    <div>Reviewzyklus halbjährlich · Geltungsbereich <a href="https://dg-es.de/wissenschaft/blog">dg-es.de/wissenschaft/blog</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
